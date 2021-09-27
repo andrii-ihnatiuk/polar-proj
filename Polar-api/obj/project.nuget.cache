@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "at9lDP6592FbgRiwCqWfLxIUUuBP1uBdZn5AwoJMq4THNHWfYUEN0o9hC5Qxiu+O9LsXxUKIiWjG4Mn7vA9PPA==",
+  "success": true,
+  "projectFilePath": "/home/andrew/Programming/NET/Polar/Polar-api/Polar-api.csproj",
+  "expectedPackageFiles": [
+    "/home/andrew/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/home/andrew/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/andrew/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "/home/andrew/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "/home/andrew/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "/home/andrew/.nuget/packages/swashbuckle.aspnetcore.swaggerui/5.6.3/swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
