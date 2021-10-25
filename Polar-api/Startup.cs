@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PolarApi.Models;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Polar
 {
@@ -30,6 +32,10 @@ namespace Polar
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "Polar-api", Version = "v1"}); });
             services.AddCors(); // CORS enabled
+
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<PolarContext>(options => 
+                options.UseMySql(connection, new MySqlServerVersion(new Version())));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
