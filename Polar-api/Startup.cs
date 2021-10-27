@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace Polar
 {
@@ -30,11 +31,11 @@ namespace Polar
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "Polar-api", Version = "v1"}); });
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Polar-api", Version = "v1" }); });
             services.AddCors(); // CORS enabled
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<PolarContext>(options => 
+            services.AddDbContext<PolarContext>(options =>
                 options.UseMySql(connection, new MySqlServerVersion(new Version())));
         }
 
@@ -53,16 +54,17 @@ namespace Polar
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.Run(async (context) => {
+                context.Response.ContentType = "text/html";
+                await context.Response.SendFileAsync(System.IO.Path.Combine(env.WebRootPath, "index.html"));
+            });
+
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-
-            app.UseDefaultFiles();
-            
-            app.UseStaticFiles();
 
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200"));
         }
