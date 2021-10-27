@@ -71,7 +71,8 @@
               "browserTarget": "Polar-client:build:production"
             },
             "development": {
-              "browserTarget": "Polar-client:build:development"
+              "browserTarget": "Polar-client:build:development",
+              "proxyConfig": "./proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

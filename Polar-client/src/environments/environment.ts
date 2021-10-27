@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://polar-proj.westeurope.cloudapp.azure.com/'
+  apiUrl: '/api/'
 };
 
 /*

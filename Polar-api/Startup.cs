@@ -58,15 +58,15 @@ namespace Polar
             app.UseAuthorization();
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200"));
+        
             app.Run(async (context) => {
                 context.Response.ContentType = "text/html";
                 await context.Response.SendFileAsync(System.IO.Path.Combine(env.WebRootPath, "index.html"));
             });
-
-
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-
-            app.UseCors(builder => builder.WithOrigins("http://localhost:4200"));
         }
     }
 }

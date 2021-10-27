@@ -15,7 +15,7 @@ export class TestComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get(`${environment.apiUrl}api/test`, { responseType: 'text' }).subscribe((data: string) => this.text = data);
+    this.http.get(`${environment.apiUrl}test`, { responseType: 'text' }).subscribe((data: string) => this.text = data);
   }
 
 }
