@@ -20,12 +20,14 @@ namespace Polar
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            Environment = env;
         }
 
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -34,7 +36,13 @@ namespace Polar
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Polar-api", Version = "v1" }); });
             services.AddCors(); // CORS enabled
 
-            string connection = Configuration.GetConnectionString("DefaultConnection");
+            string connection;
+            if (Environment.IsDevelopment()) {
+                connection = Configuration.GetConnectionString("DevConnection");
+            } else {
+                connection = Configuration.GetConnectionString("DefaultConnection");
+            }
+
             services.AddDbContext<PolarContext>(options =>
                 options.UseMySql(connection, new MySqlServerVersion(new Version())));
         }

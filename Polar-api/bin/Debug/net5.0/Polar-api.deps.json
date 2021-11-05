@@ -34,6 +34,7 @@
       "Polar-api/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Http.Extensions": "2.2.0",
+          "Microsoft.EntityFrameworkCore.Design": "5.0.11",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.11",
           "Pomelo.EntityFrameworkCore.MySql": "5.0.2",
           "Swashbuckle.AspNetCore": "5.6.3",
