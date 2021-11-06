@@ -1,7 +1,7 @@
 # File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
 
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,linux,angular
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,linux,angular
+# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,linux,angular,dotnetcore
+# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,linux,angular,dotnetcore
 
 ### Angular ###
 ## Angular ##
@@ -34,6 +34,15 @@ e2e/*.map
 # System Files
 .DS_Store/
 
+### DotnetCore ###
+# .NET Core build folders
+bin/
+obj/
+
+# Common node modules locations
+/node_modules
+/wwwroot/node_modules
+
 ### Linux ###
 *~
 
@@ -65,7 +74,10 @@ e2e/*.map
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,linux,angular
+# Support for Project snippet scope
+!.vscode/*.code-snippets
+
+# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,linux,angular,dotnetcore
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
