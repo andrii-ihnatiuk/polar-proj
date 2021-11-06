@@ -1,0 +1,23 @@
+<div>
+    <form [formGroup]="form" (submit)="onSubmit()">
+        <div>
+            <input type="email" placeholder="Email" formControlName="Email"> Enter email
+        </div>
+        <div>
+            <input type="text" placeholder="Username" formControlName="UserName"> Enter username
+        </div>
+        <div formGroupName="Passwords">
+            <div>
+                <input type="text" placeholder="Password" formControlName="Password"> Enter password
+            </div>
+            <div>
+                <input type="text" placeholder="Confirm password" formControlName="ConfirmPassword"> Confirm password
+            </div>
+        </div>
+        <div>
+            <button type="submit" [disabled]="!form.valid">Sign up</button>
+        </div>
+
+        <div *ngIf="responseInfo"> {{ responseInfo }} </div>
+    </form>
+</div>
