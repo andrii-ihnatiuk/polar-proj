@@ -1,10 +1,10 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace PolarApi.Models
 {
-    public class PolarContext : DbContext
+    public class PolarContext : IdentityDbContext<User>
     {
-        public DbSet<User> Users { get; set; }
         public DbSet<Story> Stories { get; set; }
         public DbSet<Marker> Markers { get; set; }
         public DbSet<Location>  Locations { get; set; }
@@ -16,6 +16,8 @@ namespace PolarApi.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             // Default value for Stories.Image
             modelBuilder.Entity<Story>()
                 .Property(s => s.Image)

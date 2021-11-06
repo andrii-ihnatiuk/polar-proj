@@ -15,6 +15,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Identity;
 
 namespace Polar
 {
@@ -45,6 +47,13 @@ namespace Polar
 
             services.AddDbContext<PolarContext>(options =>
                 options.UseMySql(connection, new MySqlServerVersion(new Version())));
+
+            services.AddDefaultIdentity<User>()
+                .AddEntityFrameworkStores<PolarContext>();
+            services.Configure<IdentityOptions>(options => {
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,6 +72,7 @@ namespace Polar
 
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseDefaultFiles();
             app.UseStaticFiles();

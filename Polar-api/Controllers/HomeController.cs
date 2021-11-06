@@ -22,6 +22,10 @@ namespace Polar.Controllers
         {
             var fileName = "polar.apk";
             var filePath = _config.GetValue<string>("Paths:FilesPath") + fileName;
+            if (!System.IO.File.Exists(filePath)) 
+            {
+                return NotFound();
+            }
             var bytes = await System.IO.File.ReadAllBytesAsync(filePath);
           
             return File(bytes, "application/vnd.android.package-archive", fileName);
