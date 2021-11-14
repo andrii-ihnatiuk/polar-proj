@@ -1,10 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;	
 using System.Threading.Tasks;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Polar.Models;
 
 namespace Polar.Controllers
@@ -15,11 +21,13 @@ namespace Polar.Controllers
     {
         private UserManager<User> _userManager;
         private SignInManager<User> _signInManager;
+        private readonly ApplicationSettings _appSettings;
 
-        public UserController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public UserController(UserManager<User> userManager, SignInManager<User> signInManager, IOptions<ApplicationSettings> appSettings)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _appSettings = appSettings.Value;
         }
 
         [HttpPost("register")]
@@ -39,6 +47,38 @@ namespace Polar.Controllers
             {
                 throw ex;
             }
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(UserLoginModel model) 
+        {
+            var user = this.IsEmailLogin(model.Login) 
+                ? await _userManager.FindByEmailAsync(model.Login) // Если логин по email то и пользователя ищем по email
+                : await _userManager.FindByNameAsync(model.Login); 
+            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+            {
+                var key = Encoding.UTF8.GetBytes(_appSettings.AuthOptions.Secret);
+                var tokenDescriptor = new SecurityTokenDescriptor {
+                    Subject = new ClaimsIdentity(new Claim[] {
+                        new Claim("UserID", user.Id)
+                    }),
+                    Expires = DateTime.UtcNow.AddMinutes(5),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),SecurityAlgorithms.HmacSha256Signature)
+                };
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                var token = tokenHandler.WriteToken(securityToken);
+
+                return Ok(new { token });
+            } else 
+                return BadRequest(new { message = "Username or password is incorrect" });
+        }
+
+        private bool IsEmailLogin(string login) 
+        {
+            string pattern = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
+            var result = Regex.IsMatch(login, pattern) ? true : false;
+            return result;
         }
 
     }

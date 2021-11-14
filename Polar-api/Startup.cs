@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using PolarApi.Models;
+using System.Text;
+using Polar.Models;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +18,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Polar
 {
@@ -37,6 +40,8 @@ namespace Polar
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Polar-api", Version = "v1" }); });
             services.AddCors(); // CORS enabled
+            // Adding configuration class to be injected
+            services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
 
             string connection;
             if (Environment.IsDevelopment()) {
@@ -53,6 +58,29 @@ namespace Polar
             services.Configure<IdentityOptions>(options => {
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
+            });
+
+            var key = Encoding.UTF8.GetBytes(Configuration.GetValue<String>("ApplicationSettings:AuthOptions:Secret"));
+            services.AddAuthentication(x => {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options => {
+                options.RequireHttpsMetadata = true;
+                options.SaveToken = false;
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters() {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                   
+                    ValidateIssuer = true,
+                    ValidIssuer = Configuration.GetValue<String>("ApplicationSettings:AuthOptions:Issuer"),
+
+                    ValidateAudience = true,
+                    ValidAudience = Configuration.GetValue<String>("ApplicationSettings:AuthOptions:Audience"),
+
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
+                };
             });
         }
 

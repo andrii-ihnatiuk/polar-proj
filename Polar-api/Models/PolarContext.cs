@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace PolarApi.Models
+namespace Polar.Models
 {
     public class PolarContext : IdentityDbContext<User>
     {
