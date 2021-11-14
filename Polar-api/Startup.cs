@@ -72,11 +72,11 @@ namespace Polar
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                    
-                    ValidateIssuer = true,
-                    ValidIssuer = Configuration.GetValue<String>("ApplicationSettings:AuthOptions:Issuer"),
+                    ValidateIssuer = false,
+                    // ValidIssuer = Configuration.GetValue<String>("ApplicationSettings:AuthOptions:Issuer"),
 
-                    ValidateAudience = true,
-                    ValidAudience = Configuration.GetValue<String>("ApplicationSettings:AuthOptions:Audience"),
+                    ValidateAudience = false,
+                    // ValidAudience = Configuration.GetValue<String>("ApplicationSettings:AuthOptions:Audience"),
 
                     ValidateLifetime = true,
                     ClockSkew = TimeSpan.Zero

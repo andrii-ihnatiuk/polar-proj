@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 using Polar.Models;
 
@@ -22,12 +23,14 @@ namespace Polar.Controllers
         private UserManager<User> _userManager;
         private SignInManager<User> _signInManager;
         private readonly ApplicationSettings _appSettings;
+        private readonly PolarContext _context;
 
-        public UserController(UserManager<User> userManager, SignInManager<User> signInManager, IOptions<ApplicationSettings> appSettings)
+        public UserController(UserManager<User> userManager, SignInManager<User> signInManager, IOptions<ApplicationSettings> appSettings, PolarContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _appSettings = appSettings.Value;
+            _context = context;
         }
 
         [HttpPost("register")]
@@ -62,7 +65,7 @@ namespace Polar.Controllers
                     Subject = new ClaimsIdentity(new Claim[] {
                         new Claim("UserID", user.Id)
                     }),
-                    Expires = DateTime.UtcNow.AddMinutes(5),
+                    Expires = DateTime.UtcNow.AddMinutes(20),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),SecurityAlgorithms.HmacSha256Signature)
                 };
                 var tokenHandler = new JwtSecurityTokenHandler();
@@ -79,6 +82,39 @@ namespace Polar.Controllers
             string pattern = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
             var result = Regex.IsMatch(login, pattern) ? true : false;
             return result;
+        }
+
+        [Authorize]
+        [HttpGet("profile")]
+        public async Task<IActionResult> Profile()
+        {
+            // var identity = (ClaimsIdentity)User.Identity;
+            // IEnumerable<Claim> claims = identity.Claims;
+            // var userId = claims.First(c => c.Type == "UserID").Value;
+            
+            // Do the same as upper one
+            var userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(userId);
+            var userInfo = new { username = user.UserName, email = user.Email }; // User info to be sent to client
+            
+            // Getting all locations from DB
+            var query = from location in _context.Locations select new { location.Id, location.Name, location.NumberOfMarkers };
+            var locations = query.ToList();
+
+            var areas = new List<object>(); // List of areas and found markers
+            foreach (var location in locations)
+            {
+                var res = from marker in _context.Markers
+                        where (marker.LocationId == location.Id && marker.Users.Any(u => u.Id == userId))
+                        select new { marker.Id, marker.Type };
+                areas.Add(new { 
+                    name = location.Name,
+                    markers = res.ToList(),
+                    totalMarkers = location.NumberOfMarkers
+                });
+            }
+         
+            return Ok(new { info = userInfo, data = areas });
         }
 
     }

@@ -14,9 +14,9 @@ namespace Polar.Controllers
     public class HomeController : ControllerBase
     {
         private readonly ApplicationSettings _appSettings;
-        public HomeController(ApplicationSettings appSettings)
+        public HomeController(IOptions<ApplicationSettings> appSettings)
         {
-            _appSettings = appSettings;
+            _appSettings = appSettings.Value;
         }
 
         [HttpGet("download")]
