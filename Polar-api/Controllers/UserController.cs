@@ -72,9 +72,13 @@ namespace Polar.Controllers
                 var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                 var token = tokenHandler.WriteToken(securityToken);
 
-                return Ok(new { token });
+                return Ok(new { succeeded = true, token = token });
             } else 
-                return BadRequest(new { message = "Username or password is incorrect" });
+            {
+                var error = new List<object> { new { code = "InvalidCredentials", description = "Username or password is incorrect" } };
+                return BadRequest(new { succeeded = false, errors = error });
+            }
+
         }
 
         private bool IsEmailLogin(string login) 
