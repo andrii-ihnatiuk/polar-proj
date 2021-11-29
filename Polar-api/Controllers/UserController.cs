@@ -25,7 +25,8 @@ namespace Polar.Controllers
         private readonly ApplicationSettings _appSettings;
         private readonly PolarContext _context;
 
-        public UserController(UserManager<User> userManager, SignInManager<User> signInManager, IOptions<ApplicationSettings> appSettings, PolarContext context)
+        public UserController(UserManager<User> userManager, SignInManager<User> signInManager,
+                              IOptions<ApplicationSettings> appSettings, PolarContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -65,18 +66,20 @@ namespace Polar.Controllers
                     Subject = new ClaimsIdentity(new Claim[] {
                         new Claim("UserID", user.Id)
                     }),
-                    Expires = DateTime.UtcNow.AddMinutes(20),
+                    Expires = DateTime.UtcNow.AddHours(4),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),SecurityAlgorithms.HmacSha256Signature)
                 };
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                 var token = tokenHandler.WriteToken(securityToken);
 
-                return Ok(new { succeeded = true, token = token });
+                return Ok(new LoginOkModel { Succeeded = true, Token = token });
             } else 
             {
-                var error = new List<object> { new { code = "InvalidCredentials", description = "Username or password is incorrect" } };
-                return BadRequest(new { succeeded = false, errors = error });
+                var error = new List<object> { 
+                    new { code = "InvalidCredentials", description = "Username or password is incorrect" } 
+                };
+                return BadRequest(new LoginBadModel { Succeeded = false, Errors = error });
             }
 
         }

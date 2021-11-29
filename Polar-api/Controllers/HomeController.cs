@@ -42,8 +42,8 @@ namespace Polar.Controllers
             var res = await (
                         from users in _context.Users
                         orderby users.Score descending
-                        select new { username = users.UserName, score = users.Score }).Take(4).ToListAsync();
-            return Ok(new { succeeded = true, rating = res });
+                        select new RatingUserModel { Username = users.UserName, Score = users.Score }).Take(4).ToListAsync();
+            return Ok(new RatingModel { Succeeded = true, Rating = res });
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Polar.Models
     {
         public DbSet<Story> Stories { get; set; }
         public DbSet<Marker> Markers { get; set; }
-        public DbSet<Location>  Locations { get; set; }
+        public DbSet<Location> Locations { get; set; }
 
         public PolarContext(DbContextOptions<PolarContext> options) : base(options)
         {
