@@ -45,5 +45,28 @@ namespace Polar.Controllers
                         select new RatingUserModel { Username = users.UserName, Score = users.Score }).Take(4).ToListAsync();
             return Ok(new RatingModel { Succeeded = true, Rating = res });
         }
+
+        [HttpGet("markers")]
+        public async Task<IActionResult> Markers()
+        {
+            // Getting all locations from DB
+            var query = from location in _context.Locations select new { location.Id, location.Name, location.NumberOfMarkers };
+            var locations = query.ToList();
+
+            var areas = new List<object>(); // List of areas and markers
+            foreach (var location in locations)
+            {
+                var res = await (
+                            from marker in _context.Markers
+                            where (marker.LocationId == location.Id)
+                            select new { marker.Id, marker.QrCode,  marker.Type, storyId = marker.Story.Id, storyText = marker.Story.Text }).ToListAsync();
+                areas.Add(new { 
+                    name = location.Name,
+                    markers = res.ToList(),
+                });
+            }
+
+            return Ok(new { succeeded = true, data = areas });
+        }
     }
 }
