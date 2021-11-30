@@ -1,23 +1,47 @@
-<div>
-    <form [formGroup]="form" (submit)="onSubmit()">
-        <div>
-            <input type="email" placeholder="Email" formControlName="Email"> Enter email
+<div class="main-wrap">
+  <app-navbar></app-navbar>
+  <div class="account-header-wrap text-center">
+    {{ 'registration.creation-header' | translate }}
+  </div>
+  <div class="container-fluid text-center align-middle">
+    <div class="container text-center p-5 registration-form">
+      <form [formGroup]="userService.formModel" autocomplete="off" (submit)="onSubmit()">
+        <div class="form-group required">
+          <input placeholder="{{ 'forms.username' | translate }}" class="form-control" formControlName="UserName">
+          <label class="text-danger"
+            *ngIf="userService.formModel.get('UserName')?.touched && userService.formModel.get('UserName')?.errors?.required"> {{ 'forms.obligatory-field' | translate }} </label>
         </div>
-        <div>
-            <input type="text" placeholder="Username" formControlName="UserName"> Enter username
+        <div class="form-group">
+          <input placeholder="{{ 'forms.email' | translate }}" class="form-control" formControlName="Email">
+          <label class="text-danger"
+            *ngIf="userService.formModel.get('Email')?.touched && userService.formModel.get('Email')?.errors?.required"> {{ 'forms.obligatory-field' | translate }} </label>
+          <label class="text-danger"
+            *ngIf="userService.formModel.get('Email')?.touched && userService.formModel.get('Email')?.errors?.email">{{ 'forms.wrong-email' | translate }}</label>
         </div>
         <div formGroupName="Passwords">
-            <div>
-                <input type="text" placeholder="Password" formControlName="Password"> Enter password
-            </div>
-            <div>
-                <input type="text" placeholder="Confirm password" formControlName="ConfirmPassword"> Confirm password
-            </div>
+          <div class="form-group required">
+            <input placeholder="{{ 'forms.password' | translate }}" type="password" class="form-control" formControlName="Password">
+            <label class="text-danger"
+              *ngIf="userService.formModel.get('Passwords.Password')?.touched && userService.formModel.get('Passwords.Password')?.errors?.required"> {{ 'forms.obligatory-field' | translate }} </label>
+            <label class="text-danger"
+              *ngIf="userService.formModel.get('Passwords.Password')?.touched && userService.formModel.get('Passwords.Password')?.errors?.minlength">{{ 'forms.not-enough-symbols' | translate }}</label>
+          </div>
+          <div class="form-group required">
+            <input placeholder="{{ 'forms.confirmPassword' | translate }}" type="password" class="form-control" formControlName="Confirm">
+            <label class="text-danger"
+              *ngIf="userService.formModel.get('Passwords.Confirm')?.touched && userService.formModel.get('Passwords.Confirm')?.errors?.required"> {{ 'forms.obligatory-field' | translate }} </label>
+            <label class="text-danger"
+              *ngIf="userService.formModel.get('Passwords.Confirm')?.touched && userService.formModel.get('Passwords.Confirm')?.errors?.passwordMismatch">{{ 'forms.no-match' | translate }}</label>
+          </div>
         </div>
-        <div>
-            <button type="submit" [disabled]="!form.valid">Sign up</button>
+        <div class="form-row">
+          <div class="form-group col-md-8 offset-md-2">
+            <!-- <button type="submit" class="btn btn-lg btn-block" [disabled]="userService.formModel.valid">Sign Up</button> -->
+            <button type="submit" class="create-account-button btn btn-lg btn-block">{{ 'registration.create-account' |
+              translate }}</button>
+          </div>
         </div>
-
-        <div *ngIf="responseInfo"> {{ responseInfo }} </div>
-    </form>
+      </form>
+    </div>
+  </div>
 </div>

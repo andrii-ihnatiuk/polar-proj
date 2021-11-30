@@ -1,3 +1,39 @@
+.sign-in-button {
+    width: 252px;
+    height: 56px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 16px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+}
+.account-header-wrap {
+    padding: 50px 50px 0px 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 60px;
+    color: white;
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.35);
+}
+.form-group {
+    padding: 15px;
+}
+.form-control {
+    border: none;
+    border-bottom: 2px solid #81BBFF;
+    background-color: transparent;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+}
+.form-control::placeholder { 
+    color: #DDDDDD;
+}
 .navbar-logo {
     width: 158.5px;
     height: 132.6px;
@@ -31,7 +67,7 @@
     height: 110px;
     padding: 35px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 48px;
+    font-size: 32px;
     font-style: normal;
     font-weight: 500;
     color: white;
@@ -55,21 +91,24 @@
     line-height: 30px;
     filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.35));
 }
+.dropdown-menu {
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    color: white;
+    line-height: 30px;
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.35));
+    background-color: transparent;
+    padding: 25px;
+    border: none;
+}
+.dropdown-item {
+    padding: 20px;
+}
 .main-wrap {
+    height: 100vh;
     background: radial-gradient(74.93% 109.31% at 14.48% 8.25%, #080D40 0%, #81BBFF 100%);
     box-shadow: 120px 120px 80px -60px rgba(0, 0, 0, 0.35);
-    height: 100vh;
-}
-.create-account-button {
-    width: 252px;
-    height: 56px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 16px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
 }
 .account-header-wrap {
     padding: 50px 50px 0px 50px;
@@ -99,6 +138,3 @@
 }
 
 
-    
-    
-    

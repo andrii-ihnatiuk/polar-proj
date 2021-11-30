@@ -1,51 +1,39 @@
+import { UserService } from './../../shared/services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from 'src/app/shared/services/user.service';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  styleUrls: ['./registration.component.css'],
+  styles: []
 })
+
 export class RegistrationComponent implements OnInit {
 
-  form:FormGroup;
-  isOk: boolean;
-  responseInfo: string | null;
-
-  constructor(private fb: FormBuilder, private service: UserService) {
-    this.form = this.fb.group({
-      Email: ['', Validators.email],
-      UserName: ['', Validators.required],
-      Passwords: this.fb.group({
-        Password: ['', [Validators.required, Validators.minLength(6)]],
-        ConfirmPassword: ['', Validators.required]
-      })
-    });
-    this.isOk = false;
-    this.responseInfo = null;
-  }
+  constructor(public userService: UserService, private toastr: ToastrService, private translateService: TranslateService) { }
 
   ngOnInit(): void {
+    this.userService.formModel.reset();
   }
 
-  onSubmit() {
-    this.service.register(this.form).subscribe(
-      (res: any) => {
+  onSubmit(): void {
+    this.userService.register().subscribe(
+      res => {
         if (res.succeeded) {
-            this.form.reset();
-            this.responseInfo = 'Everything is okay!';
-        } else {
-          res.errors.forEach((error: any) => {
-            switch (error.code) {
+          this.userService.formModel.reset();
+          this.toastr.success('New user created!', 'Registration successful.');
+        }
+        else {
+          res.errors.forEach((element: { code: any; description: any; }) => {
+            switch (element.code) {
               case 'DuplicateUserName':
-                console.log(error.description);
-                this.responseInfo = error.description;
+                this.toastr.error('Username is already taken', 'Registration failed.');
                 break;
-            
+
               default:
-                this.responseInfo = 'Unkown error';
-                console.log('Unknown error');
+                this.toastr.error(element.description, 'Registration failed.');
                 break;
             }
           });
@@ -54,9 +42,11 @@ export class RegistrationComponent implements OnInit {
       err => {
         console.log(err);
       }
-    )
-    
-    return null;
+    );
   }
 
+  updateLanguage(lan: string): void {
+    this.translateService.use(lan);
+    localStorage.setItem('lang', lan);
+  }
 }

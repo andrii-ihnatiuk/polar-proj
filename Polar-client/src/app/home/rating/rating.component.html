@@ -1,0 +1,54 @@
+<div class="main-div">
+  <app-navbar></app-navbar>
+  <div class="text-center leaderboard-wrap">
+    <div>{{ 'rating-page.leaderboard' | translate }}</div>
+    <div class="image-div">
+    <div class="container">
+      <div class="row position-wrap">
+        <div class="col-sm">
+          1.
+        </div>
+        <div class="col-sm text-center ">
+          <div class="first-position-frame">{{ userRating.rating[0].username }}</div>
+        </div>
+        <div class="col-sm">
+          {{ userRating.rating[0].score }}
+        </div>
+      </div>
+      <div class="row position-wrap">
+        <div class="col-sm text">
+          2.
+        </div>
+        <div class="col-sm text-center">
+          <div class="second-position-frame">{{ userRating.rating[1].username }}</div>
+        </div>
+        <div class="col-sm">
+          {{ userRating.rating[1].score }}
+        </div>
+      </div>
+      <div class="row position-wrap">
+        <div class="col-sm text">
+          3.
+        </div>
+        <div class="col-sm text-center">
+          <div class="third-position-frame">{{ userRating.rating[2].username }}</div>
+        </div>
+        <div class="col-sm">
+          {{ userRating.rating[2].score }}
+        </div>
+      </div>
+      <div class="row position-wrap">
+        <div class="col-sm text">
+          4.
+        </div>
+        <div class="col-sm text-center">
+          <div class="fourth-position-frame">{{ userRating.rating[3].username }}</div>
+        </div>
+        <div class="col-sm">
+          {{ userRating.rating[3].score }}
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

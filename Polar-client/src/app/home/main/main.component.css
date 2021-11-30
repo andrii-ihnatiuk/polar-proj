@@ -1,0 +1,140 @@
+.gradient-first {
+    padding: 0px 0px 180px 0px;
+    background: radial-gradient(86.33% 135.06% at 8.61% 6.25%, #080D40 0%, #81BBFF 100%);
+}
+.polar-image {
+    width: 1024px;
+    height: 231.5%;
+}
+.polytech-image {
+    width: 1344px;
+    height: 840px;
+}
+.polar-logo {
+    width: 60%;
+    height: 60%;
+}
+.play-button {
+    width: 180px;
+    height: 80px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 6px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 16px;
+    width: 350px;
+    height: 110px;
+    padding: 35px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 500;
+    color: white;
+    line-height: 30px;
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.35));
+}
+.desc-wrap{
+    padding: 350px;
+}
+.desc-header {
+    font-family: 'Montserrat', sans-serif;
+    font-style: bold;
+    font-weight: 600;
+    font-size: 56px;
+}
+.desc-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;    
+}
+.desc-frame {
+    background-image: url('\src\assets\images\desc-frame.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 1488px, 816px;
+}
+.download-button {
+    background-image: url('\src\assets\images\get-it-on-g-play.png');
+    background-position: center center;
+    width: 336px;
+    height: 99.56px;
+    border-radius: 16px;
+}
+.gradient-second {
+    padding: 180px;
+    background: linear-gradient(0deg, #000000 -6.07%, #080D40 14.97%, rgba(129, 187, 255, 0.24) 100%);
+}
+.footer-wrap {
+    padding: 200px;
+}
+.policy-wrap {
+    font-size: 32px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+.polar-image-footer {
+    width: 120%;
+    height: 120%;
+}
+.navbar-logo {
+    width: 158.5px;
+    height: 132.6px;
+}
+.logo-wrap {
+    padding: 25px 50px 0px 150px;
+}
+.game-wrap {
+    font-size: 48px;
+    padding: 48px 32px 32px 32px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.35));
+}
+.news-wrap {
+    font-size: 48px;
+    padding: 48px 32px 32px 32px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.35));
+}
+.navbar-nav.me-auto li a {
+    color: white;
+}
+.sign-in-up-button {
+    width: 180px;
+    height: 80px;
+    padding: 48px 32px 32px 32px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 6px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 16px;
+    width: 350px;
+    height: 110px;
+    padding: 35px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    color: white;
+    line-height: 30px;
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.35));
+}
+.lang-button {
+    width: 100px;
+    height: 50px;
+    border: none;
+    padding: 12px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    padding: 35px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    color: white;
+    line-height: 30px;
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.35));
+}

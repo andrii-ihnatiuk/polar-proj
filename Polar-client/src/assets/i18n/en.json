@@ -1,0 +1,36 @@
+{
+    "main-page": {  
+        "game": "Game",
+        "news": "News",
+        "sign-in": "Sign in",
+        "register": "Register",
+        "play": "Play!",
+        "rating": "Rating",
+        "desc-header1": "An exiting journey around",
+        "desc-header2": "the Polytech University",
+        "desc-body1": "Polar is the app designed for students to bring more interesting experience",
+        "desc-body2": "to their lives. The app is about the exploration of the campuses and",
+        "desc-body3": "searching for the secrets."
+    },
+    "rating-page": {
+        "leaderboard": "Leaderboard"
+    },
+    "registration": {
+        "create-account": "Create account",
+        "creation-header": "Create your account"
+    },
+    "forms": {
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm password",
+        "obligatory-field": "This field is mandatory",
+        "not-enough-symbols": "Minimum 6 characters required",
+        "wrong-email": "Invalid email address",
+        "no-match": "Confirm password does not match"
+    },
+    "login": {
+        "authorize": "Sign in to POLAR"
+    }
+}
+

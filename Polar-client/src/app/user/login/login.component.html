@@ -1,0 +1,69 @@
+<div class="main-wrap">
+  <nav class="navbar navbar-expand-lg text-white">
+    <div class="container-fluid">
+      <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item active">
+            <div class="logo-wrap">
+              <img src="assets\images\polar-logo.png" class="navbar-logo" alt="">
+            </div>
+          </li>
+          <li class="nav-item dropdown game-wrap">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              {{ 'main-page.game' | translate }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" routerLink='/login' routerLinkActive='active'>{{ 'main-page.sign-in' | translate
+                }}</a>
+              <a class="dropdown-item" routerLink='/register' routerLinkActive='active'>{{ 'main-page.register' |
+                translate }}</a>
+              <a class="dropdown-item" routerLink='/rating' routerLinkActive='active'>{{ 'main-page.rating' | translate
+                }}</a>
+            </div>
+          </li>
+          <li class="nav-item news-wrap">
+            <a class="nav-link" routerLink='/news' routerLinkActive='active'>{{ 'main-page.news' | translate }}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <button type="button" class="sign-in-up-button" routerLink='/register' routerLinkActive='active'>{{
+              'main-page.register' | translate }}</button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="lang-button" (click)="this.updateLanguage('ukr')">UKR</button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="lang-button" (click)="this.updateLanguage('en')">EN</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="account-header-wrap text-center">
+    {{ 'login.authorize' | translate }}
+  </div>
+  <div class="container-fluid text-center align-middle">
+    <div class="container text-center p-5 registration-form">
+      <form #form='ngForm' class="mb-4" autocomplete="off" (submit)="onSubmit(form)">
+        <div class="form-group">
+          <input placeholder="{{ 'forms.username' | translate }}" class="form-control" #UserName="ngModel" name="login"
+            [(ngModel)]="formModel.UserName" required>
+        </div>
+        <div class="form-group">
+          <input placeholder="{{ 'forms.password' | translate }}" type="password" class="form-control"
+            #Password="ngModel" name="password" [(ngModel)]="formModel.Password" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-8 offset-md-2">
+            <button type="submit" class="sign-in-button btn btn-lg btn-block" [disabled]="form.invalid">{{
+              'main-page.sign-in' | translate }}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

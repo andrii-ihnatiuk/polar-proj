@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-main',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 export class MainComponent implements OnInit {
   title = 'Polar-client';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private translateService: TranslateService) { }
 
   ngOnInit(): void {
   }
@@ -17,5 +18,4 @@ export class MainComponent implements OnInit {
   goTest() {
     this.router.navigate(['/test'])
   }
-
 }
