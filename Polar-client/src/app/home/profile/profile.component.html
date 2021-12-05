@@ -60,7 +60,10 @@
   
   <div class="container mx-auto">
     <div class="row text-center" *ngFor="let key of keys">
-      <label class="marker-area">{{ userDetails.data[key].name }} {{ userDetails.data[key].totalMarkers }}</label>
+      <label class="marker-area">{{ userDetails.data[key].name }} (0/{{ userDetails.data[key].totalMarkers }})</label>
+      <div class="marker-group">
+        <div class="marker-usual" *ngFor="let element of [].constructor(userDetails.data[key].totalMarkers); let i = index;">🔒</div>
+      </div>
   </div>
   </div>
 

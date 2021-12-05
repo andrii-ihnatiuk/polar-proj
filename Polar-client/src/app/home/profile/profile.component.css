@@ -174,5 +174,23 @@ hr .new1 {
     font-weight: 500;
     color: white;
     font-family: 'Montserrat', sans-serif;
+    padding: 35px;
+}
+.marker-usual {
+    margin: 5px;
     padding: 15px;
+    display: inline-block;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    padding: 15px;
+    height: 120px;
+    width: 120px;
+    border-radius: 16px;
+    font-family: 'Montserrat', sans-serif;
+    border: solid 4px lightblue;
+}
+.marker-group {
+    padding: 5px;
+    display: inline-block;
 }
