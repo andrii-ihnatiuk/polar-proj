@@ -20,6 +20,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NewsComponent } from './home/news/news.component';
 import { AchievementsComponent } from './home/achievements/achievements.component';
+import { StoriesComponent } from './home/stories/stories.component';
+
 export function createTranslateLoader (http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -37,6 +39,7 @@ export function createTranslateLoader (http: HttpClient) {
     NavbarComponent,
     NewsComponent,
     AchievementsComponent,
+    StoriesComponent,
   ],
   imports: [
     BrowserModule,

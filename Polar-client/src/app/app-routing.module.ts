@@ -9,6 +9,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { RatingComponent } from './home/rating/rating.component';
 import { NewsComponent } from './home/news/news.component';
 import { AchievementsComponent } from './home/achievements/achievements.component';
+import { StoriesComponent } from './home/stories/stories.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -17,9 +18,10 @@ const routes: Routes = [
   // { path: '**', component: PageNotFoundComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'achievments', component: AchievementsComponent, canActivate: [AuthGuard] },
+  { path: 'stories', component: StoriesComponent, canActivate: [AuthGuard] },
   { path: 'rating', component: RatingComponent },
-  { path: 'news', component: NewsComponent },
-  { path: 'achievments', component: AchievementsComponent }
+  { path: 'news', component: NewsComponent }
 ];
 
 @NgModule({

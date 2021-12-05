@@ -1,0 +1,178 @@
+.card {
+    font-family: 'Montserrat', sans-serif;
+    width: 350px;
+    background-color: white;
+    border: 6px solid;
+    border-color: white;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.5s
+}
+
+.image img {
+    transition: all 0.5s
+}
+
+.card:hover .image img {
+    transform: scale(1.5)
+}
+
+.btn {
+    font-family: 'Montserrat', sans-serif;
+    height: 140px;
+    width: 140px;
+}
+
+.name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: bold
+}
+
+.idd {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600
+}
+
+.idd1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px
+}
+
+.number {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: bold
+}
+
+.follow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #444444
+}
+
+.btn1 {
+    font-family: 'Montserrat', sans-serif;
+    height: 40px;
+    width: 150px;
+    border: none;
+    background-color: #000;
+    color: #aeaeae;
+    font-size: 15px
+}
+
+.text span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: #545454;
+    font-weight: 500
+}
+
+.icons i {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 19px
+}
+
+hr .new1 {
+    font-family: 'Montserrat', sans-serif;
+    border: 1px solid
+}
+
+.join {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #a0a0a0;
+    font-weight: bold
+}
+
+.date {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ccc
+}
+.main-div {
+    overflow: auto;
+    height: 100vh;
+    width: 100%;
+    background: radial-gradient(86.33% 135.06% at 8.61% 6.25%, #080D40 0%, #81BBFF 100%);
+}
+.navbar-logo {
+    width: 158.5px;
+    height: 132.6px;
+}
+.logo-wrap {
+    padding: 25px 50px 0px 150px;
+}
+.game-wrap {
+    font-size: 48px;
+    padding: 48px 32px 32px 32px;
+    color: white;
+}
+.news-wrap {
+    font-size: 48px;
+    padding: 48px 32px 32px 32px;
+    color: white;
+}
+.navbar-nav.me-auto li a {
+    color: white;
+}
+.sign-in-up-button {
+    width: 180px;
+    height: 80px;
+    padding: 48px 32px 32px 32px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 6px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 16px;
+    width: 350px;
+    height: 110px;
+    padding: 35px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    color: white;
+    line-height: 30px;
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.35));
+}
+.lang-button {
+    width: 100px;
+    height: 50px;
+    border: none;
+    padding: 12px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    padding: 35px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    color: white;
+    line-height: 30px;
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.35));
+}
+.dropdown-menu {
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    color: white;
+    line-height: 30px;
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.35));
+    background-color: transparent;
+    padding: 25px;
+    border: none;
+}
+.dropdown-item {
+    padding: 20px;
+}
+.marker-area {
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    padding: 15px;
+}

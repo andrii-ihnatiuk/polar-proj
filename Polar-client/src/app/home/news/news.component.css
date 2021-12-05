@@ -1,4 +1,5 @@
 .main-div {
+    overflow: auto;
     height: 100vh;
     width: 100%;
     background: radial-gradient(86.33% 135.06% at 8.61% 6.25%, #080D40 0%, #81BBFF 100%);

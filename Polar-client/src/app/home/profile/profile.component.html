@@ -1,11 +1,67 @@
-<nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand text-white">JWT Auth System</a>
-    <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
-  </nav>
+<div class="main-div container-fluid">
   
-  <div class="card m-5" style="width:18rem" *ngIf="userDetails">
-    <ul class="list-group">
-      <li class="list-group-item"><strong>Username : </strong>{{userDetails.info.username}}</li>
-      <li class="list-group-item"><strong>Email : </strong>{{userDetails.info.email}}</li>
-    </ul>
+  <nav class="navbar navbar-expand-lg text-white">
+    <div class="container-fluid">
+      <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item active">
+            <div class="logo-wrap">
+              <img src="assets\images\polar-logo.png" class="navbar-logo" alt="">
+            </div>
+          </li>
+          <li class="nav-item dropdown game-wrap">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              {{ 'main-page.game' | translate }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" routerLink='/login' routerLinkActive='active'>{{ 'main-page.sign-in' | translate
+                }}</a>
+              <a class="dropdown-item" routerLink='/register' routerLinkActive='active'>{{ 'main-page.register' |
+                translate }}</a>
+              <a class="dropdown-item" routerLink='/rating' routerLinkActive='active'>{{ 'main-page.rating' | translate
+                }}</a>
+            </div>
+          </li>
+          <li class="nav-item news-wrap">
+            <a class="nav-link" routerLink='/news' routerLinkActive='active'>{{ 'main-page.news' | translate }}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <button type="button" class="sign-in-up-button" (click)="onLogout()">Logout</button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="lang-button" (click)="this.updateLanguage('ukr')">UKR</button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="lang-button" (click)="this.updateLanguage('en')">EN</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4 mb-4 p-3 d-flex justify-content-center mx-auto" *ngIf="userDetails">
+    <div class="card p-4">
+      <div class=" image d-flex flex-column justify-content-center align-items-center"> <button
+          class="btn btn-secondary"> <img
+            src="https://www.pngitem.com/pimgs/m/168-1689599_male-user-filled-icon-user-icon-100-x.png" height="100"
+            width="100" /></button>
+        <span class="name mt-3">{{ userDetails.info.username }} </span>
+        <span class="name mt-3">{{ userDetails.info.email }} </span>
+        <div class=" d-flex mt-2"> <button class="btn1">Edit Profile</button> </div>
+        <div class=" px-2 rounded mt-4 date "> <span class="join">Joined November, 2021</span> </div>
+      </div>
+    </div>
   </div>
+  
+  <div class="container mx-auto">
+    <div class="row text-center" *ngFor="let key of keys">
+      <label class="marker-area">{{ userDetails.data[key].name }} {{ userDetails.data[key].totalMarkers }}</label>
+  </div>
+  </div>
+
+</div>

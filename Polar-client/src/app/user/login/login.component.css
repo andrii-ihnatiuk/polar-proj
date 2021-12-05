@@ -106,11 +106,15 @@
     padding: 20px;
 }
 .main-wrap {
+    overflow: auto;
     height: 100vh;
     background: radial-gradient(74.93% 109.31% at 14.48% 8.25%, #080D40 0%, #81BBFF 100%);
     box-shadow: 120px 120px 80px -60px rgba(0, 0, 0, 0.35);
 }
 .account-header-wrap {
+    max-width: 100%;
+    height: auto;
+    width: auto\9;
     padding: 50px 50px 0px 50px;
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
@@ -123,6 +127,9 @@
     padding: 15px;
 }
 .form-control {
+    max-width: 100%;
+    height: auto;
+    width: auto\9;
     border: none;
     border-bottom: 2px solid #81BBFF;
     background-color: transparent;
