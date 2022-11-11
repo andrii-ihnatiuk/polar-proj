@@ -10,4 +10,4 @@
 - Ігнатюк Андрій Геннадійович УІ-191 (back-end, partially front-end)
 - Фаюк Костянтин Сергійович УІ-191 (mobile)
 
-#### API call examples can be found <a hred="https://docs.google.com/document/d/1OT0v5YEq8tdjQgad_WNVZUz-Xv9z4KQQKQd5OUxCSVY/edit">here</a>.
+#### API call examples can be found <a href="https://docs.google.com/document/d/1OT0v5YEq8tdjQgad_WNVZUz-Xv9z4KQQKQd5OUxCSVY/edit">here</a>.
